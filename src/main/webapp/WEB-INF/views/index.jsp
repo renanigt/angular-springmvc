@@ -1,8 +1,11 @@
-<html>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
+<html ng-app>
 <head>
 	<title>Index</title>
+	<script src="<c:url value="/resources/js/angular/angular.min.js"/>"></script>
 </head>
 <body>
-	Index !
+	Nothing here {{'yet' + '!'}}
 </body>
 </html>
