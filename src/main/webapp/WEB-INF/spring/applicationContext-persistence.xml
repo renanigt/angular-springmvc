@@ -17,7 +17,7 @@
 		<property name="driverClass" value="com.mysql.jdbc.Driver" />
 		<property name="jdbcUrl" value="jdbc:mysql://localhost:3306/angularspringmvc" />
 		<property name="user" value="root" />
-		<property name="password" value="root" />
+		<property name="password" value="1q2w3e4r" />
 		<property name="maxPoolSize" value="10" />
 		<property name="maxStatements" value="0" />
 		<property name="minPoolSize" value="3" />
@@ -25,7 +25,7 @@
 	</bean>
 	
 	<bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
-		<property name="persistenceUnitName" ref="dataSource" />
+		<property name="dataSource" ref="dataSource" />
 		<property name="jpaDialect">
 			<bean class="org.springframework.orm.jpa.vendor.HibernateJpaDialect"></bean>
 		</property>
