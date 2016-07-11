@@ -2,7 +2,9 @@ package br.com.angularspringmvc.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import br.com.angularspringmvc.model.Cliente;
 import br.com.angularspringmvc.service.ClienteService;
@@ -18,10 +20,9 @@ public class ClienteController {
 		return "clientes/form";
 	}
 	
-	@RequestMapping("/clientes/salva")
-	public String salva(Cliente cliente) {
-		service.salva(cliente);
-		return "clientes/ok";
+	@RequestMapping(value = "/clientes/salva", method = RequestMethod.POST)
+	public void salva(@RequestBody Cliente clienteModel) {
+		service.salva(clienteModel);
 	}
 	
 }
