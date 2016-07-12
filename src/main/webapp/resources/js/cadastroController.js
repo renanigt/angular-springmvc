@@ -16,7 +16,7 @@ cadastroControllerApp.controller("cadastroController", function($scope, $window,
 		clienteModel.endereco = $scope.endereco;
 		clienteModel.telefone = $scope.telefone;
 		
-		$http.post("/angular-springmvc/clientes/salva", clienteModel).then(function(reponse) {
+		$http.post("/angular-springmvc/clientes/salva", clienteModel).then(function(response) {
 			$scope.mensagem = "Cliente incluído com sucesso !!";
 		}, function(response) {
 			$scope.mensagem = "Houve um erro ao incluir o cliente !!";
