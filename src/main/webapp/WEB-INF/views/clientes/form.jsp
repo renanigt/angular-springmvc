@@ -1,3 +1,5 @@
+<%@page contentType="text/html; charset=UTF-8" %>
+    
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <!DOCTYPE html>
@@ -9,29 +11,33 @@
 </head>
 <body>
 
-	<div>
-		{{mensagem}}
-	</div>
-
 	<form ng-controller="cadastroController">
 		<div>
 			{{mensagem}}
 		</div>
 		<div>
 			<label for="nome">Nome</label>
-			<input type="text" name="nome" id="nome" ng-model="nome" />
+			<div>
+				<input type="text" name="nome" id="nome" ng-model="nome" />
+			</div>
 		</div>
 		<div>
 			<label for="nome">Cidade</label>
-			<input type="text" name="cidade" id="cidade" ng-model="cidade" />
+			<div>
+				<input type="text" name="cidade" id="cidade" ng-model="cidade" />
+			</div>
 		</div>
 		<div>
-			<label for="nome">Endereço</label>
-			<input type="text" name="endereco" id="endereco" ng-model="endereco" />
+			<label for="nome">EndereÃ§o</label>
+			<div>
+				<input type="text" name="endereco" id="endereco" ng-model="endereco" />
+			</div>
 		</div>
 		<div>
 			<label for="nome">Telefone</label>
-			<input type="text" name="telefone" id="telefone" ng-model="telefone" />
+			<div>
+				<input type="text" name="telefone" id="telefone" ng-model="telefone" />
+			</div>
 		</div>
 		<div>
 			<input type="button" value="Salvar" ng-click="salvarCliente()" />
