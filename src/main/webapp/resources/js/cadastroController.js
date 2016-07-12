@@ -7,6 +7,7 @@ cadastroControllerApp.controller("cadastroController", function($scope, $window,
 	$scope.endereco = null;
 	$scope.telefone = null;
 	$scope.mensagem = null;
+	$scope.errosValidacao = null;
 	
 	$scope.salvarCliente = function() {
 		
@@ -17,7 +18,14 @@ cadastroControllerApp.controller("cadastroController", function($scope, $window,
 		clienteModel.telefone = $scope.telefone;
 		
 		$http.post("/angular-springmvc/clientes/salva", clienteModel).then(function(response) {
-			$scope.mensagem = "Cliente incluído com sucesso !!";
+			if(response.data.status == "SUCESSO") {
+				$scope.mensagem = "Cliente incluído com sucesso !!";
+			} else {
+				$scope.errosValidacao = [];
+				for(i=0; i < response.data.result.length; i++) {
+					$scope.errosValidacao[i] = response.data.result[i].code;
+				}
+			}
 		}, function(response) {
 			$scope.mensagem = "Houve um erro ao incluir o cliente !!";
 		});

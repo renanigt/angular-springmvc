@@ -15,6 +15,9 @@
 		<div>
 			{{mensagem}}
 		</div>
+		<div data-ng-repeat="erro in errosValidacao">
+			{{erro}}<br/>
+		</div>
 		<div>
 			<label for="nome">Nome</label>
 			<div>
