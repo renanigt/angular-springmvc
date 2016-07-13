@@ -18,5 +18,13 @@ public class ClienteService {
 	public void salva(Cliente cliente) {
 		manager.persist(cliente);
 	}
+
+	public void altera(Cliente cliente) {
+		manager.merge(cliente);
+	}
+	
+	public Cliente buscaPorId(Long id) {
+		return manager.find(Cliente.class, id);
+	}
 	
 }
