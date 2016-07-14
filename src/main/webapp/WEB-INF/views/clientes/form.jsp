@@ -6,8 +6,8 @@
 <html ng-app="cadastroControllerApp">
 <head>
 	<title>Cadastro de Clientes</title>
-	<script src="<c:url value="/resources/js/angular/angular.min.js"/>"></script>
-	<script src="<c:url value="/resources/js/clienteController.js"/>"></script>
+	<script src="<c:url value="/resources/js/angular.min.js"/>"></script>
+	<script src="<c:url value="/resources/js/controller/clienteController.js"/>"></script>
 </head>
 <body>
 
