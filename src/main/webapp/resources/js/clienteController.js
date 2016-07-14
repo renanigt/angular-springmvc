@@ -1,69 +1,67 @@
 var cadastroControllerApp = angular.module("cadastroControllerApp", []);
 
-cadastroControllerApp.controller("ClienteController", function($scope, $http) {
+cadastroControllerApp.controller("ClienteController", function($http) {
 	
-	$scope.id = null;
-	$scope.nome = null;
-	$scope.cidade = null;
-	$scope.endereco = null;
-	$scope.telefone = null;
-	$scope.mensagem = null;
-	$scope.errosValidacao = null;
+	var self = this;
+	self.id = null;
+	self.nome = null;
+	self.cidade = null;
+	self.endereco = null;
+	self.telefone = null;
+	self.mensagem = null;
+	self.errosValidacao = [];
 	
-	$scope.salvarCliente = function() {
+	self.salvarCliente = function() {
 		
-		var clienteModel = $scope.iniciaClienteModel();
+		var clienteModel = self.iniciaClienteModel();
 		
 		$http.post("/angular-springmvc/clientes/salva", clienteModel).then(function(response) {
 			if(response.data.status == "SUCESSO") {
-				$scope.mensagem = "Cliente incluído com sucesso !!";
+				self.mensagem = "Cliente incluído com sucesso !!";
 			} else {
-				$scope.errosValidacao = [];
 				for(i=0; i < response.data.result.length; i++) {
-					$scope.errosValidacao[i] = response.data.result[i].code;
+					self.errosValidacao[i] = response.data.result[i].code;
 				}
 			}
 		}, function(response) {
-			$scope.mensagem = "Houve um erro ao incluir o cliente !!";
+			self.mensagem = "Houve um erro ao incluir o cliente !!";
 		});
 		
 	};
 	
-	$scope.alterarCliente = function() {
+	self.alterarCliente = function() {
 		
-		var clienteModel = $scope.iniciaClienteModel();
+		var clienteModel = self.iniciaClienteModel();
 		
 		$http.put("/angular-springmvc/clientes/altera", clienteModel).then(function(response) {
 			if(response.data.status == "SUCESSO") {
-				$scope.mensagem = "Cliente alterado com sucesso !!";
+				self.mensagem = "Cliente alterado com sucesso !!";
 			} else {
-				$scope.errosValidacao = [];
 				for(i=0; i < response.data.result.length; i++) {
-					$scope.errosValidacao[i] = response.data.result[i].code;
+					self.errosValidacao[i] = response.data.result[i].code;
 				}
 			}
 		}, function(response) {
-			$scope.mensagem = "Houve um erro ao alterar o cliente !!";
+			self.mensagem = "Houve um erro ao alterar o cliente !!";
 		});
 		
 	};
 	
-	$scope.submit = function(id) {
-		console.log(id);
+	self.submit = function(id) {
 		if(id) {
-			$scope.alterarCliente();
+			self.alterarCliente();
 		} else {
-			$scope.salvarCliente();
+			self.salvarCliente();
 		}		
 	};
 	
-	$scope.iniciaClienteModel = function() {
+	self.iniciaClienteModel = function() {
 		var clienteModel = new Object();
-		clienteModel.id = $scope.id;
-		clienteModel.nome = $scope.nome;
-		clienteModel.cidade = $scope.cidade;
-		clienteModel.endereco = $scope.endereco;
-		clienteModel.telefone = $scope.telefone;
+		clienteModel.id = self.id;
+		clienteModel.nome = self.nome;
+		clienteModel.cidade = self.cidade;
+		clienteModel.endereco = self.endereco;
+		clienteModel.telefone = self.telefone;
 		return clienteModel;
 	}
 	

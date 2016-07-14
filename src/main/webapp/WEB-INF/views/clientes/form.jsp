@@ -11,40 +11,40 @@
 </head>
 <body>
 
-	<form ng-controller="ClienteController">
+	<form ng-controller="ClienteController as clienteCtrl">
 		<div>
-			{{mensagem}}
+			{{clienteCtrl.mensagem}}
 		</div>
-		<div data-ng-repeat="erro in errosValidacao">
+		<div data-ng-repeat="erro in clienteCtrl.errosValidacao">
 			{{erro}}<br/>
 		</div>
-		<input type="hidden" ng-model="id" ng-init="id='${cliente.id}'" >
+		<input type="hidden" ng-model="clienteCtrl.id" ng-init="clienteCtrl.id='${cliente.id}'" >
 		<div>
-			<label for="nome">Nome</label>
+			<label>Nome</label>
 			<div>
-				<input type="text" ng-model="nome" ng-init="nome='${cliente.nome}'" />
+				<input type="text" ng-model="clienteCtrl.nome" ng-init="clienteCtrl.nome='${cliente.nome}'" />
 			</div>
 		</div>
 		<div>
-			<label for="nome">Cidade</label>
+			<label>Cidade</label>
 			<div>
-				<input type="text" ng-model="cidade" ng-init="cidade='${cliente.cidade}'" />
+				<input type="text" ng-model="clienteCtrl.cidade" ng-init="clienteCtrl.cidade='${cliente.cidade}'" />
 			</div>
 		</div>
 		<div>
-			<label for="nome">Endereço</label>
+			<label>Endereço</label>
 			<div>
-				<input type="text" ng-model="endereco" ng-init="endereco='${cliente.endereco}'" />
+				<input type="text" ng-model="clienteCtrl.endereco" ng-init="clienteCtrl.endereco='${cliente.endereco}'" />
 			</div>
 		</div>
 		<div>
-			<label for="nome">Telefone</label>
+			<label>Telefone</label>
 			<div>
-				<input type="text" ng-model="telefone" ng-init="telefone='${cliente.telefone}'" />
+				<input type="text" ng-model="clienteCtrl.telefone" ng-init="clienteCtrl.telefone='${cliente.telefone}'" />
 			</div>
 		</div>
 		<div>
-			<input type="button" value="{{id ? 'Alterar' : 'Salvar'}}" ng-click="submit(id)" />
+			<input type="button" value="{{clienteCtrl.id ? 'Alterar' : 'Salvar'}}" ng-click="clienteCtrl.submit(clienteCtrl.id)" />
 		</div>
 	</form>
 
