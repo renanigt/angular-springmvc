@@ -18,8 +18,10 @@ function ClienteController(ClienteService) {
 		var clienteModel = self.iniciaClienteModel();
 		ClienteService.salvarCliente(clienteModel).then(function(data) {
 			if(data.status == "SUCESSO") {
+				self.limpaFormulario();
 				self.mensagem = "Cliente incluído com sucesso !!";
 			} else {
+				self.limpaMensagem();
 				for(i=0; i < data.result.length; i++) {
 					self.errosValidacao[i] = data.result[i].code;
 				}
@@ -63,6 +65,20 @@ function ClienteController(ClienteService) {
 		clienteModel.endereco = self.endereco;
 		clienteModel.telefone = self.telefone;
 		return clienteModel;
+	}
+
+	self.limpaFormulario = function() {
+		self.id = null;
+		self.nome = null;
+		self.cidade = null;
+		self.endereco = null;
+		self.telefone = null;
+		self.mensagem = null;
+		self.errosValidacao = [];
+	}
+	
+	self.limpaMensagem = function() {
+		self.mensagem = null;
 	}
 	
 }
