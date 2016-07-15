@@ -3,11 +3,13 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <!DOCTYPE html>
-<html ng-app="cadastroControllerApp">
+<html ng-app="app">
 <head>
 	<title>Cadastro de Clientes</title>
 	<script src="<c:url value="/resources/js/angular.min.js"/>"></script>
+	<script src="<c:url value="/resources/js/module/app.js"/>"></script>
 	<script src="<c:url value="/resources/js/controller/clienteController.js"/>"></script>
+	<script src="<c:url value="/resources/js/service/clienteService.js"/>"></script>
 </head>
 <body>
 

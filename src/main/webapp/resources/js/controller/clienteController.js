@@ -1,6 +1,8 @@
-var cadastroControllerApp = angular.module("cadastroControllerApp", []);
+angular.module("app").controller("ClienteController", ClienteController);
 
-cadastroControllerApp.controller("ClienteController", function($http) {
+ClienteController.$inject = ["ClienteService"];
+
+function ClienteController(ClienteService) {
 	
 	var self = this;
 	self.id = null;
@@ -14,16 +16,15 @@ cadastroControllerApp.controller("ClienteController", function($http) {
 	self.salvarCliente = function() {
 		
 		var clienteModel = self.iniciaClienteModel();
-		
-		$http.post("/angular-springmvc/clientes/salva", clienteModel).then(function(response) {
-			if(response.data.status == "SUCESSO") {
+		ClienteService.salvarCliente(clienteModel).then(function(data) {
+			if(data.status == "SUCESSO") {
 				self.mensagem = "Cliente incluído com sucesso !!";
 			} else {
-				for(i=0; i < response.data.result.length; i++) {
-					self.errosValidacao[i] = response.data.result[i].code;
+				for(i=0; i < data.result.length; i++) {
+					self.errosValidacao[i] = data.result[i].code;
 				}
 			}
-		}, function(response) {
+		}, function(reason) {
 			self.mensagem = "Houve um erro ao incluir o cliente !!";
 		});
 		
@@ -32,16 +33,15 @@ cadastroControllerApp.controller("ClienteController", function($http) {
 	self.alterarCliente = function() {
 		
 		var clienteModel = self.iniciaClienteModel();
-		
-		$http.put("/angular-springmvc/clientes/altera", clienteModel).then(function(response) {
-			if(response.data.status == "SUCESSO") {
+		ClienteService.alterarCliente(clienteModel).then(function(data) {
+			if(data.status == "SUCESSO") {
 				self.mensagem = "Cliente alterado com sucesso !!";
 			} else {
-				for(i=0; i < response.data.result.length; i++) {
-					self.errosValidacao[i] = response.data.result[i].code;
+				for(i=0; i < data.result.length; i++) {
+					self.errosValidacao[i] = data.result[i].code;
 				}
 			}
-		}, function(response) {
+		}, function(reason) {
 			self.mensagem = "Houve um erro ao alterar o cliente !!";
 		});
 		
@@ -65,4 +65,4 @@ cadastroControllerApp.controller("ClienteController", function($http) {
 		return clienteModel;
 	}
 	
-});
+}
