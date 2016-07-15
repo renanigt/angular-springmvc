@@ -12,16 +12,20 @@ function ClienteController(ClienteService) {
 	self.telefone = null;
 	self.mensagem = null;
 	self.errosValidacao = [];
+	self.salvarCliente = salvarCliente;
+	self.alterarCliente = alterarCliente;
+	self.submit = submit;
 	
-	self.salvarCliente = function() {
+	function salvarCliente() {
 		
-		var clienteModel = self.iniciaClienteModel();
+		var clienteModel = iniciaClienteModel();
+		
 		ClienteService.salvarCliente(clienteModel).then(function(data) {
 			if(data.status == "SUCESSO") {
-				self.limpaFormulario();
+				limpaFormulario();
 				self.mensagem = "Cliente incluído com sucesso !!";
 			} else {
-				self.limpaMensagem();
+				limpaMensagem();
 				for(i=0; i < data.result.length; i++) {
 					self.errosValidacao[i] = data.result[i].code;
 				}
@@ -32,9 +36,10 @@ function ClienteController(ClienteService) {
 		
 	};
 	
-	self.alterarCliente = function() {
+	function alterarCliente() {
 		
-		var clienteModel = self.iniciaClienteModel();
+		var clienteModel = iniciaClienteModel();
+		
 		ClienteService.alterarCliente(clienteModel).then(function(data) {
 			if(data.status == "SUCESSO") {
 				self.mensagem = "Cliente alterado com sucesso !!";
@@ -49,7 +54,7 @@ function ClienteController(ClienteService) {
 		
 	};
 	
-	self.submit = function(id) {
+	function submit(id) {
 		if(id) {
 			self.alterarCliente();
 		} else {
@@ -57,7 +62,7 @@ function ClienteController(ClienteService) {
 		}		
 	};
 	
-	self.iniciaClienteModel = function() {
+	function iniciaClienteModel() {
 		var clienteModel = new Object();
 		clienteModel.id = self.id;
 		clienteModel.nome = self.nome;
@@ -67,7 +72,7 @@ function ClienteController(ClienteService) {
 		return clienteModel;
 	}
 
-	self.limpaFormulario = function() {
+	function limpaFormulario() {
 		self.id = null;
 		self.nome = null;
 		self.cidade = null;
@@ -77,7 +82,7 @@ function ClienteController(ClienteService) {
 		self.errosValidacao = [];
 	}
 	
-	self.limpaMensagem = function() {
+	function limpaMensagem() {
 		self.mensagem = null;
 	}
 	
