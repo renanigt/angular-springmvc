@@ -14,6 +14,10 @@ public class ClienteService {
 
 	@PersistenceContext
 	private EntityManager manager;
+
+	public Cliente buscaPorId(Long id) {
+		return manager.find(Cliente.class, id);
+	}
 	
 	public void salva(Cliente cliente) {
 		manager.persist(cliente);
@@ -23,8 +27,9 @@ public class ClienteService {
 		manager.merge(cliente);
 	}
 	
-	public Cliente buscaPorId(Long id) {
-		return manager.find(Cliente.class, id);
+	public void remove(Long id) {
+		Cliente cliente = buscaPorId(id);
+		manager.remove(cliente);
 	}
 	
 }

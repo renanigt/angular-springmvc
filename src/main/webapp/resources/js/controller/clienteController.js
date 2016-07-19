@@ -14,6 +14,7 @@ function ClienteController(ClienteService) {
 	self.errosValidacao = [];
 	self.salvarCliente = salvarCliente;
 	self.alterarCliente = alterarCliente;
+	self.deletarCliente = deletarCliente;
 	self.submit = submit;
 	
 	function salvarCliente() {
@@ -54,11 +55,29 @@ function ClienteController(ClienteService) {
 		
 	};
 	
+	function deletarCliente(id) {
+		
+		ClienteService.deletarCliente(id).then(function(data) {
+			if(data.status == "SUCESSO") {
+				self.mensagem = "Cliente removido com sucesso !!";
+			} else {
+				for(i=0; i < data.result.length; i++) {
+					self.errosValidacao[i] = data.result[i].code;
+				}
+			}
+		}, function(reason) {
+			self.mensagem = "Houve um erro ao remover o cliente !!";
+		});
+		
+		limpaFormulario();
+		
+	};
+	
 	function submit(id) {
 		if(id) {
-			self.alterarCliente();
+			alterarCliente();
 		} else {
-			self.salvarCliente();
+			salvarCliente();
 		}		
 	};
 	

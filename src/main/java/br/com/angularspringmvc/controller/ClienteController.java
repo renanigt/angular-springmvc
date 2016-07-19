@@ -21,12 +21,12 @@ public class ClienteController {
 	@Autowired
 	private ClienteService service;
 	
-	@RequestMapping("/clientes/add")
-	public String cadastro() {
+	@RequestMapping("/clientes/novo")
+	public String novo() {
 		return "clientes/form";
 	}
 	
-	@RequestMapping(value = "/clientes/salva", method = RequestMethod.POST)
+	@RequestMapping(value = "/clientes/novo/salvar", method = RequestMethod.POST)
 	@ResponseBody
 	public AjaxResponse salva(@RequestBody Cliente clienteModel, BindingResult errors) {
 		AjaxResponse response = new AjaxResponse();
@@ -44,15 +44,15 @@ public class ClienteController {
 		return response;
 	}
 	
-	@RequestMapping("/clientes/edit/{id}")
-	public ModelAndView edicao(@PathVariable("id") Long id) {
+	@RequestMapping("/clientes/edita/{id}")
+	public ModelAndView edita(@PathVariable("id") Long id) {
 		Cliente cliente = service.buscaPorId(id);
 		ModelAndView modelAndView = new ModelAndView("clientes/form");
 		modelAndView.addObject("cliente", cliente);
 		return modelAndView;
 	}
 	
-	@RequestMapping(value = "/clientes/altera", method = RequestMethod.PUT)
+	@RequestMapping(value = "/clientes/edita/salvar", method = RequestMethod.PUT)
 	@ResponseBody
 	public AjaxResponse altera(@RequestBody Cliente clienteModel, BindingResult errors) {
 		AjaxResponse response = new AjaxResponse();
@@ -65,6 +65,19 @@ public class ClienteController {
 		} else {
 			response.setStatus("ERRO");
 			response.setResult(errors.getAllErrors());
+		}
+		
+		return response;
+	}
+	
+	@RequestMapping(value = "/clientes/deleta/{id}", method = RequestMethod.DELETE)
+	public AjaxResponse remove(@PathVariable("id") Long id) {
+		AjaxResponse response = new AjaxResponse();
+		try {
+			service.remove(id);
+			response.setStatus("SUCESSO");
+		} catch(Exception e) {
+			response.setStatus("ERRO");
 		}
 		
 		return response;
