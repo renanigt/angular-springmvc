@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import br.com.angularspringmvc.model.AjaxResponse;
+import br.com.angularspringmvc.model.AjaxStatus;
 import br.com.angularspringmvc.model.Cliente;
 import br.com.angularspringmvc.service.ClienteService;
 
@@ -35,9 +36,9 @@ public class ClienteController {
 		
 		if(!errors.hasErrors()) {
 			service.salva(clienteModel);
-			response.setStatus("SUCESSO");
+			response.setStatus(AjaxStatus.SUCESSO);
 		} else {
-			response.setStatus("ERRO");
+			response.setStatus(AjaxStatus.ERRO);
 			response.setResult(errors.getAllErrors());
 		}
 		
@@ -61,9 +62,9 @@ public class ClienteController {
 		
 		if(!errors.hasErrors()) {
 			service.altera(clienteModel);
-			response.setStatus("SUCESSO");
+			response.setStatus(AjaxStatus.SUCESSO);
 		} else {
-			response.setStatus("ERRO");
+			response.setStatus(AjaxStatus.ERRO);
 			response.setResult(errors.getAllErrors());
 		}
 		
@@ -73,12 +74,8 @@ public class ClienteController {
 	@RequestMapping(value = "/clientes/deleta/{id}", method = RequestMethod.DELETE)
 	public AjaxResponse remove(@PathVariable("id") Long id) {
 		AjaxResponse response = new AjaxResponse();
-		try {
-			service.remove(id);
-			response.setStatus("SUCESSO");
-		} catch(Exception e) {
-			response.setStatus("ERRO");
-		}
+		service.remove(id);
+		response.setStatus(AjaxStatus.SUCESSO);
 		
 		return response;
 	}
