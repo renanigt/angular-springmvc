@@ -8,8 +8,8 @@
 	<title>Cadastro de Clientes</title>
 	<script src="<c:url value="/resources/js/angular.min.js"/>"></script>
 	<script src="<c:url value="/resources/js/module/app.js"/>"></script>
-	<script src="<c:url value="/resources/js/controller/listagem.js"/>"></script>
-	<script src="<c:url value="/resources/js/service/clienteService.js"/>"></script>
+	<script src="<c:url value="/resources/js/cliente/listagem.js"/>"></script>
+	<script src="<c:url value="/resources/js/cliente/clienteService.js"/>"></script>
 </head>
 <body ng-controller="ListagemController as listagemCtrl">
 
