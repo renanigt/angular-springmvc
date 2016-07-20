@@ -1,5 +1,7 @@
 package br.com.angularspringmvc.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -78,6 +80,21 @@ public class ClienteController {
 		service.remove(id);
 		response.setStatus(ResponseModelStatus.SUCESSO);
 		
+		return response;
+	}
+	
+	@RequestMapping("/clientes/listagem")
+	public String listagem() {
+		return "clientes/listagem";
+	}
+	
+	@RequestMapping(value = "/clientes/lista", method = RequestMethod.GET)
+	@ResponseBody
+	public ResponseModel listaTodos() {
+		ResponseModel response = new ResponseModel();
+		List<Cliente> clientes = service.listaTodos();
+		response.setStatus(ResponseModelStatus.SUCESSO);
+		response.setResult(clientes);
 		return response;
 	}
 
