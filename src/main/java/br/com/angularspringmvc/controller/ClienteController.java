@@ -11,8 +11,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import br.com.angularspringmvc.model.AjaxResponse;
-import br.com.angularspringmvc.model.AjaxStatus;
+import br.com.angularspringmvc.model.ResponseModel;
+import br.com.angularspringmvc.model.ResponseModelStatus;
 import br.com.angularspringmvc.model.Cliente;
 import br.com.angularspringmvc.service.ClienteService;
 
@@ -29,16 +29,16 @@ public class ClienteController {
 	
 	@RequestMapping(value = "/clientes/novo/salvar", method = RequestMethod.POST)
 	@ResponseBody
-	public AjaxResponse salva(@RequestBody Cliente clienteModel, BindingResult errors) {
-		AjaxResponse response = new AjaxResponse();
+	public ResponseModel salva(@RequestBody Cliente clienteModel, BindingResult errors) {
+		ResponseModel response = new ResponseModel();
 		
 		validaCliente(errors);
 		
 		if(!errors.hasErrors()) {
 			service.salva(clienteModel);
-			response.setStatus(AjaxStatus.SUCESSO);
+			response.setStatus(ResponseModelStatus.SUCESSO);
 		} else {
-			response.setStatus(AjaxStatus.ERRO);
+			response.setStatus(ResponseModelStatus.ERRO);
 			response.setResult(errors.getAllErrors());
 		}
 		
@@ -55,16 +55,16 @@ public class ClienteController {
 	
 	@RequestMapping(value = "/clientes/edita/salvar", method = RequestMethod.PUT)
 	@ResponseBody
-	public AjaxResponse altera(@RequestBody Cliente clienteModel, BindingResult errors) {
-		AjaxResponse response = new AjaxResponse();
+	public ResponseModel altera(@RequestBody Cliente clienteModel, BindingResult errors) {
+		ResponseModel response = new ResponseModel();
 		
 		validaCliente(errors);
 		
 		if(!errors.hasErrors()) {
 			service.altera(clienteModel);
-			response.setStatus(AjaxStatus.SUCESSO);
+			response.setStatus(ResponseModelStatus.SUCESSO);
 		} else {
-			response.setStatus(AjaxStatus.ERRO);
+			response.setStatus(ResponseModelStatus.ERRO);
 			response.setResult(errors.getAllErrors());
 		}
 		
@@ -72,10 +72,11 @@ public class ClienteController {
 	}
 	
 	@RequestMapping(value = "/clientes/deleta/{id}", method = RequestMethod.DELETE)
-	public AjaxResponse remove(@PathVariable("id") Long id) {
-		AjaxResponse response = new AjaxResponse();
+	@ResponseBody
+	public ResponseModel remove(@PathVariable("id") Long id) {
+		ResponseModel response = new ResponseModel();
 		service.remove(id);
-		response.setStatus(AjaxStatus.SUCESSO);
+		response.setStatus(ResponseModelStatus.SUCESSO);
 		
 		return response;
 	}

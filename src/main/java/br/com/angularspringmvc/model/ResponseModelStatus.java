@@ -1,6 +1,6 @@
 package br.com.angularspringmvc.model;
 
-public enum AjaxStatus {
+public enum ResponseModelStatus {
 
 	SUCESSO,
 	ERRO

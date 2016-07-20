@@ -1,14 +1,14 @@
 package br.com.angularspringmvc.model;
 
-public class AjaxResponse {
+public class ResponseModel {
 
-	private AjaxStatus status;
+	private ResponseModelStatus status;
 	private Object result;
 
-	public AjaxStatus getStatus() {
+	public ResponseModelStatus getStatus() {
 		return status;
 	}
-	public void setStatus(AjaxStatus status) {
+	public void setStatus(ResponseModelStatus status) {
 		this.status = status;
 	}
 	public Object getResult() {
