@@ -8,8 +8,8 @@
 	<title>Cadastro de Clientes</title>
 	<script src="<c:url value="/resources/js/angular.min.js"/>"></script>
 	<script src="<c:url value="/resources/js/module/app.js"/>"></script>
-	<script src="<c:url value="/resources/js/controller/clienteController.js"/>"></script>
-	<script src="<c:url value="/resources/js/service/clienteService.js"/>"></script>
+	<script src="<c:url value="/resources/js/cliente/clienteController.js"/>"></script>
+	<script src="<c:url value="/resources/js/cliente/clienteService.js"/>"></script>
 </head>
 <body>
 
