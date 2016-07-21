@@ -7,6 +7,7 @@ function ClienteController(ClienteService) {
 	var self = this;
 	self.listaClientes = [];
 	self.listarTodos = listarTodos;
+	self.deletarCliente = deletarCliente;
 	
 	listarTodos();
 	
@@ -18,6 +19,19 @@ function ClienteController(ClienteService) {
 			}
 		}, function(reason) {
 			self.mensagem = "Houve um erro ao listar os clientes !!";
+		});
+		
+	};
+	
+	function deletarCliente(id) {
+		
+		ClienteService.deletarCliente(id).then(function(data) {
+			if(data.status == "SUCESSO") {
+				self.mensagem = "Cliente removido com sucesso !!";
+			}
+			listarTodos();
+		}, function(reason) {
+			self.mensagem = "Houve um erro ao remover o cliente !!";
 		});
 		
 	};

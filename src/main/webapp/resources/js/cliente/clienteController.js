@@ -55,24 +55,6 @@ function ClienteController(ClienteService) {
 		
 	};
 	
-	function deletarCliente(id) {
-		
-		ClienteService.deletarCliente(id).then(function(data) {
-			if(data.status == "SUCESSO") {
-				self.mensagem = "Cliente removido com sucesso !!";
-			} else {
-				for(i=0; i < data.result.length; i++) {
-					self.errosValidacao[i] = data.result[i].code;
-				}
-			}
-		}, function(reason) {
-			self.mensagem = "Houve um erro ao remover o cliente !!";
-		});
-		
-		limpaFormulario();
-		
-	};
-	
 	function submit(id) {
 		if(id) {
 			alterarCliente();

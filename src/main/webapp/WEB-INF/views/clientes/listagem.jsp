@@ -13,8 +13,14 @@
 </head>
 <body ng-controller="ListagemController as listagemCtrl">
 
-	<div data-ng-repeat="cliente in listagemCtrl.listaClientes">
-		{{cliente.nome}}<br/>
+	<div>
+		<table data-ng-repeat="cliente in listagemCtrl.listaClientes">
+			<tr>
+				<td>{{cliente.nome}}</td>
+				<td><a href="<c:url value="/clientes/edita/{{cliente.id}}" />">Alterar</a></td>
+				<td><a href="#" ng-click="listagemCtrl.deletarCliente(cliente.id)">Deletar</a></td>
+			</tr>
+		</table>
 	</div>
 
 </body>
