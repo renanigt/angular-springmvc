@@ -1,19 +1,5 @@
-<%@page contentType="text/html; charset=UTF-8" %>
-    
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
-<!DOCTYPE html>
-<html ng-app="app">
-<head>
-	<title>Cadastro de Clientes</title>
-	<script src="<c:url value="/resources/js/angular.min.js"/>"></script>
-	<script src="<c:url value="/resources/js/module/app.js"/>"></script>
-	<script src="<c:url value="/resources/js/cliente/clienteController.js"/>"></script>
-	<script src="<c:url value="/resources/js/cliente/clienteService.js"/>"></script>
-</head>
-<body>
-
-	<form ng-controller="ClienteController as clienteCtrl">
+<div>
+	<form>
 		<div>
 			{{clienteCtrl.mensagem}}
 		</div>
@@ -34,7 +20,7 @@
 			</div>
 		</div>
 		<div>
-			<label>EndereÃ§o</label>
+			<label>Endereço</label>
 			<div>
 				<input type="text" ng-model="clienteCtrl.endereco" ng-init="clienteCtrl.endereco='${cliente.endereco}'" />
 			</div>
@@ -49,6 +35,4 @@
 			<input type="button" value="{{clienteCtrl.id ? 'Alterar' : 'Salvar'}}" ng-click="clienteCtrl.submit(clienteCtrl.id)" />
 		</div>
 	</form>
-
-</body>
-</html>
+</div>
