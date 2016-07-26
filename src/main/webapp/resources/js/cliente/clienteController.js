@@ -14,7 +14,6 @@ function ClienteController(ClienteService) {
 	self.errosValidacao = [];
 	self.salvarCliente = salvarCliente;
 	self.alterarCliente = alterarCliente;
-	self.deletarCliente = deletarCliente;
 	self.submit = submit;
 	
 	function salvarCliente() {
