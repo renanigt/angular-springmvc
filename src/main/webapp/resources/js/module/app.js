@@ -4,15 +4,15 @@ app.config(function($routeProvider, $locationProvider) {
 	
 	$routeProvider.when("/angular-springmvc", {
 		templateUrl: "/"
-	}).when("/angular-springmvc/clientes/novo", {
+	}).when("/clientes/novo", {
 		templateUrl: "/angular-springmvc/clientes/novo",
 		controller: "ClienteController",
 		controllerAs: "clienteCtrl"
-	}).when("/angular-springmvc/clientes/listagem", {
+	}).when("/clientes/listagem", {
 		templateUrl: "/angular-springmvc/clientes/listagem",
 		controller: "ListagemController",
 		controllerAs: "listagemCtrl"
-	}).when("/angular-springmvc/clientes/edita/:id", {
+	}).when("/clientes/edita/:id", {
 		templateUrl: function(params) {
 			return  "/angular-springmvc/clientes/edita/" + params.id;
 		},
