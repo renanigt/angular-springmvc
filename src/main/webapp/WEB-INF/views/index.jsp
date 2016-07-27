@@ -10,12 +10,14 @@
 	<script src="<c:url value="/resources/js/cliente/clienteController.js"/>"></script>
 	<script src="<c:url value="/resources/js/cliente/clienteService.js"/>"></script>
 	<script src="<c:url value="/resources/js/cliente/listagem.js"/>"></script>
+	
+	<base href="/" />
 </head>
 <body>
 
 	<ul>
-		<li><a href="#/clientes/novo">Adicionar</a></li>
-		<li><a href="#/clientes/listagem">Listagem</a></li>
+		<li><a href="/angular-springmvc/clientes/novo">Adicionar</a></li>
+		<li><a href="/angular-springmvc/clientes/listagem">Listagem</a></li>
 	</ul>
 
 	<div ng-view></div>

@@ -1,21 +1,27 @@
 var app = angular.module("app", ["ngRoute"]);
 
-app.config(function($routeProvider) {
-	$routeProvider.when("/clientes/novo", {
-		templateUrl: "clientes/novo",
+app.config(function($routeProvider, $locationProvider) {
+	
+	$routeProvider.when("/angular-springmvc", {
+		templateUrl: "/"
+	}).when("/angular-springmvc/clientes/novo", {
+		templateUrl: "/angular-springmvc/clientes/novo",
 		controller: "ClienteController",
 		controllerAs: "clienteCtrl"
-	}).when("/clientes/listagem", {
-		templateUrl: "clientes/listagem",
+	}).when("/angular-springmvc/clientes/listagem", {
+		templateUrl: "/angular-springmvc/clientes/listagem",
 		controller: "ListagemController",
 		controllerAs: "listagemCtrl"
-	}).when("/clientes/edita/:id", {
+	}).when("/angular-springmvc/clientes/edita/:id", {
 		templateUrl: function(params) {
-			return  "clientes/edita/" + params.id;
+			return  "/angular-springmvc/clientes/edita/" + params.id;
 		},
 		controller: "ClienteController",
 		controllerAs: "clienteCtrl"
 	}).otherwise({
 		redirectTo: "/"
 	});
+	
+	$locationProvider.html5Mode(true);
+	
 })
